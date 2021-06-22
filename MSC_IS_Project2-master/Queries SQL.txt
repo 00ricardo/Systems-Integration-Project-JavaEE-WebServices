@@ -1,0 +1,185 @@
+
+Final QueriesDELET
+___
+
+INSERT INTO researcher (description, firstname, lastname) VALUES ('PhD Professor and researcher from ITI and UMA.', 'David', 'Aveiro');
+
+//PUBLICATIONS
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('123qwe',0, 'March 2000', 'Java EE Tutorial - Basics ', 11,0);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('456qwe',1, 'April 2000', 'Java EE Tutorial - Web Tier', 13,5);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('789qwe',2, 'May 2000', 'Java EE Tutorial - Bean Validation', 15,10);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('123rty',3, 'June 2000', 'Java EE Tutorial - Web Services', 17,15);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('456rty',4, 'July 2000', 'Java EE Tutorial - Persistence', 19,20);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+//INSTITUTIONS
+
+INSERT INTO institution (department, institution_name, location) VALUES ('FCEE', 'Universidade da Madeira', 'Funchal, Portugal');
+INSERT INTO institution_researcher (institutions_id_institution, researchers_id_researcher) VALUES ((SELECT max(id_institution) FROM institution), (SELECT max(id_researcher) FROM researcher));
+
+//SKILLS
+
+INSERT INTO skill (skill) VALUES ('Modelação e Arquitectura Organizacional');
+INSERT INTO skill_researcher (skills_id_skill, researchers_id_researcher) VALUES ((SELECT max(id_skill) FROM skill), (SELECT max(id_researcher) FROM researcher));
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+INSERT INTO researcher (description, firstname, lastname) VALUES('Trabalhou no ISTP entre 1990-1996.', 'Francisco', 'Fernandes');
+
+//PUBLICATIONS
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('123iop',7, 'August 2001', 'Desporto e Autonomia Insular', 8,45);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('456iop',14, 'April 2002', 'Tech-toch', 16,36);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('789iop+',28, 'May 2003', 'Ocean Memories', 24,27);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('123tyu',35, 'June 2004', '*uSn Enigma Code' , 32,18);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('456tyu',42, 'July 2005', 'Postgres tutorial', 40,9);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+//INSTITUTIONS
+
+INSERT INTO institution (department, institution_name, location) VALUES ('IT', 'Instituto Tech', 'Roma, Italia');
+INSERT INTO institution_researcher (institutions_id_institution, researchers_id_researcher) VALUES ((SELECT max(id_institution) FROM institution), (SELECT max(id_researcher) FROM researcher));
+
+//SKILLS
+
+INSERT INTO skill (skill) VALUES ('Genius');
+INSERT INTO skill_researcher (skills_id_skill, researchers_id_researcher) VALUES ((SELECT max(id_skill) FROM skill), (SELECT max(id_researcher) FROM researcher));
+
+
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+
+INSERT INTO researcher (description, firstname, lastname) VALUES ('PhD Electrical and Computer Engineering', 'Ana', 'Fred');
+
+
+//PUBLICATIONS
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('482778342/dsf2/13212',7, 'November 2020', 'R-Peak Detector Benchmarking using FieldWiz and Physionet Databases', 8,45);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.21203/rs.2.22270/v1',14, 'January 2020', 'ECG Biometrics using RNN and CNN', 16,36);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.276503/rs.2.22270/v9',28, 'October 2019', 'Automatic Classification of Physiological Signals Modalities', 24,27);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('20.234342/3dz',35, 'October 2019', 'Detection of Apnea in Respiratory Signals' , 32,18);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('30.10.20/32daç.v4',42, 'June 2019', 'Analysis of Electrocardiographic Patterns for Epileptic Seizure Prediction', 40,9);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+//INSTITUTIONS
+
+INSERT INTO institution (department, institution_name, location) VALUES ('UL Biomedical Engeneering', 'University of Lisbon', 'Lisboa, Portugal');
+INSERT INTO institution_researcher (institutions_id_institution, researchers_id_researcher) VALUES ((SELECT max(id_institution) FROM institution), (SELECT max(id_researcher) FROM researcher));
+
+//SKILLS
+
+INSERT INTO skill (skill) VALUES ('Supervised Learning');
+INSERT INTO skill_researcher (skills_id_skill, researchers_id_researcher) VALUES ((SELECT max(id_skill) FROM skill), (SELECT max(id_researcher) FROM researcher));
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+
+
+INSERT INTO researcher (description, firstname, lastname) VALUES ('Professor na UMA desde 2000. Trabalha atualmente no MITI como investigador e orientador de teses.', 'Filipe', 'Quintal');
+
+
+//PUBLICATIONS
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.1109/EXPAT.2019.8876565',7, 'June 2019', 'Wattom: Ambient Eco-feedback with Mid-air Input', 8,45);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.1145/3290607.3312874',14, 'January 2020', 'MyTukxi: Low Cost Smart Charging for Small Scale EVs', 16,36);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.29007/x6sn',28, 'October 2019', 'Data Storage and Maintenance Challenges: The Case of Advanced Metering Infrastructure Systems', 24,27);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.1093/iwc/iwx016',35, 'October 2019', 'Watt-I-See: Design and Evaluation of an Interactive Installation Using Eco-feedforward Strategies' , 32,18);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.23919/SustainIT.2017.8379809',42, 'June 2019', 'Studying the immediacy of eco-feedback through plug level consumption information', 40,9);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+//INSTITUTIONS
+
+INSERT INTO institution (department, institution_name, location) VALUES ('FCEE', 'Universidade da Madeira', 'Funchal, Portugal');
+INSERT INTO institution_researcher (institutions_id_institution, researchers_id_researcher) VALUES ((SELECT max(id_institution) FROM institution), (SELECT max(id_researcher) FROM researcher));
+
+//SKILLS
+
+INSERT INTO skill (skill) VALUES ('Energy');
+INSERT INTO skill_researcher (skills_id_skill, researchers_id_researcher) VALUES ((SELECT max(id_skill) FROM skill), (SELECT max(id_researcher) FROM researcher));
+
+
+
+----------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------
+
+
+INSERT INTO researcher (description, firstname, lastname) VALUES ('My focus of research is the area of Belief Revision (Logic of Theory Change): BR theory studies the impact of acquiring new information. Belief revision theory provides sound modellings for changes of beliefs in response to new information.', 'Eduardo', 'Fermé');
+
+
+//PUBLICATIONS
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.1016/j.jstrokecerebrovasdis.2020.105162',7, 'June 2019', 'Machine Learning for Brain Stroke: A Review', 8,45);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.24963/kr.2020/70',14, 'January 2020', 'Choosing What to Believe - New Results in Selective Revision', 16,36);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.24963/ijcai.2019/889',28, 'October 2019', 'Shielded Base Contraction (Extended Abstract)', 24,27);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.1186/s13173-018-0072-4',35, 'October 2019', 'On the logic of theory change: iteration of expansion' , 32,18);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+INSERT INTO publication (id_publication,citations, publication_date, publication_title, reads, recommendations) VALUES ('10.23919/IA.2017.8379809',42, 'June 2019', 'Using decision theory for analyzing enrollment in a scientific study in the health area', 40,9);
+INSERT INTO publication_researcher (publications_id_publication, researchers_id_researcher) VALUES ((SELECT max(id_publication) FROM publication), (SELECT max(id_researcher) FROM researcher));
+
+//INSTITUTIONS
+
+INSERT INTO institution (department, institution_name, location) VALUES ('Computer Science Department', 'University of Buenos Aires.', 'Buenos Aires, Argentina');
+INSERT INTO institution_researcher (institutions_id_institution, researchers_id_researcher) VALUES ((SELECT max(id_institution) FROM institution), (SELECT max(id_researcher) FROM researcher));
+
+//SKILLS
+
+INSERT INTO skill (skill) VALUES ('Artificial Intelligence');
+INSERT INTO skill_researcher (skills_id_skill, researchers_id_researcher) VALUES ((SELECT max(id_skill) FROM skill), (SELECT max(id_researcher) FROM researcher));
+
+
+
+
+
+
+
+
+

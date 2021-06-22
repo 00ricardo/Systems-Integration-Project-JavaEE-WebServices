@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="RestEAR">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="Projeto-WebProject-REST.war" deploy-path="/" handle="module:/resource/Projeto-WebProject-REST/Projeto-WebProject-REST">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Projeto-EJBProject-REST.jar" deploy-path="/" handle="module:/resource/Projeto-EJBProject-REST/Projeto-EJBProject-REST">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

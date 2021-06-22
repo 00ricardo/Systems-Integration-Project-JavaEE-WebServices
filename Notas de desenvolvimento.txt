@@ -1,0 +1,141 @@
+*** *** *** ***
+*** LOADER  ***
+*** *** *** ***
+
+O Loader tem 2 packages:
+    Common:
+        Contem as JPA Entities (Classes Java) - Anotações @Entities
+        A anotação @GeneratedValue é utilizada para informar que a geração do valor 
+        do ID da entidade será gerenciada pelo provedor de persistência.Caso contrario, 
+        a aplicação é a responsavel por gerenciar os IDs.
+    JPA:
+        Contem classes java para ler e escrever na base de dados.
+        A classe ReadResearch funciona da seguinte maneira:
+            - EntityManagerFactory serve essencialmente para criar Entities Managers
+            - EntityManager é o serviço central de persistencia, ou seja,
+            é a partir dele que se vao mapear as JPA entities e vamos neste caso 
+            ler a informação da base de dados.
+            - TypedQuery serve basicamente para executar a query 
+            - Depois... recebemos o resultado da query
+        A classe WriteResearch funciona da seguinte maneira:
+            - Esta classe vai ter arrays que guardam os reserches, skills, publications
+            e institutions. Estes arrays são preenchidos após chamar o metodo 
+            generateData(). Este metodo o que vai fazer é criar objetos das classes
+            especificadas e guardalas nos respetivos arrays.
+            - O entityTransaction serve para efetuar uma transação para a base de dados.
+            Basicamente, quando fazemos begin(), estamos a preparar a nossa aplicação
+            para fazer uma injeção na DB, para fazer essa injeção basta fazer o persist.
+            No entanto, so depois de confirmar a injeção com o commit é que obtemos os IDs
+
+*** *** *** ***
+*** SOAP P  ***
+*** *** *** ***
+
+*** *** *** ***
+*** SOAP I  ***
+*** *** *** ***
+
+*** *** *** ***
+***  REST   ***
+*** *** *** ***
+
+    EAR:
+        O EAR serve para associar um ou mais modulos num unico ficheiro e desta maneira permitir que seja possivel executar os modulos numa unica aplicação.
+        
+    EJB:
+        Neste EJB Project, primeiro começou-se por configurar o projeto com o ficheiro de persistencia, todas as dependências de JARS e entidades.. criou-se uma package para cada grupo de dados para ter as coisas bem organizadas.
+        A package entitiesEJB:
+            guarda todas as entidades Java da nossa base de dados.
+        A package entities:
+            foi uma abordagem que tentamos evitar ao máximo pq achamos ineficiente mas que resolveu um problema que nos levou dias... que era o facto de quando chamavamos os resultados da execução da query à base de dados e transformava-mos
+            essa informação em JSON, apareciam erros estranhos de sessão e coisas como o lazily e não conseguia interpretar as associações que tinhamos na DB, nomeamente institutions, skills, publications etc         
+            Então optou-se por criar classes auxiliares, em que lhes era atribuido os dados obtidos da base de dados e era esta a classe que ia ser mostrada no JSON e não a entidade. Esta passagem de dados é feita no SessionBean.
+            Basicamente criamos um List que vai ser um close do resultado da query.
+            Para fazermos esta clonagem... criamos uma instancia das classes auxiliares que falei para receber os dados. Depois vamos buscar todos os researchers das instituições e com um setter assoiamos a isntituição com uma lista de researchers.
+            Após esta associação adicionamos a instituição numa List e repetimos o processo para todas as instituições.
+            No fim, fazemos return da lista de instituições, o resultado disto é uma replica da lista de instituições obtidas na query.
+        A package ejb.beans:
+            É o nosso SessionBean, é aqui onde se faz toda a procura de dados à base de dados, usamos a anotação PersistenceContext que está diretamente relacionada com o EntityManager para gerir as entidades de persistencia, ou seja, para realizar operações
+            com a base de dados e as entidades.
+    WEB:
+        No WebProject temos uma classe de configuração para definir a "raiz" do endereço, que serve de base para todas as outras URIs. Depois criamos a classe java HTTPRequests para receber os pedidos HTTP. Basicamente especificamos um URI especifico, 
+        em que atraves do metodo GET, obtemos os resultados no formato JSON especificado na anotação Produces. Há algumas particularidades quando temos alguma URI que necessite da especificação de um parametro como é o caso desta aqui em que é necessário 
+        escrever ?="Nome do Parametro" 
+        Para que o metodo GET perceba que não me deve devolver nada sem a especificação do parametro colocamos uma anotação na função que é QueryParam. Esta anotação consegue interpretar que nesta URI vai ser colocado um parametro adicional e consegue buscar
+        esse parametro e desta forma permitine-nos fazer manipulações com isso, neste caso, o que fazemos é passamos como parametro para o nosos Bean, e esse vai buscar todas as institutions pelo nome especificado.
+
+
+
+*** *** *** ***
+*** CLIENT  ***
+*** *** *** ***
+
+*** *** *** ***
+*** WEB_FE  ***
+*** *** *** ***
+
+    EAR:
+       O EAR serve para associar um ou mais modulos num unico ficheiro e desta maneira permitir que seja possivel executar os modulos numa unica aplicação.
+    EJB:   
+        Primeiro começou-se por configurar o projeto com o ficheiro de persistencia, todas as dependências de JARS e entidades.. criou-se uma package para cada grupo de dados para ter as coisas bem organizadas.
+        A package entities:
+            Tem as entidades da base de dados.
+        A package ejb.beans:
+            É o nosso SessionBean, é aqui onde se faz toda a procura de dados à base de dados, usamos a anotação PersistenceContext que está diretamente relacionada com o EntityManager para gerir as entidades de persistencia, ou seja, para realizar operações
+            com a base de dados e as entidades. A query que usamos foi bastante simples devido as associações todas que temos nas entidades, é bastante facil buscar a informação que nos interessa.
+    WEB:
+        Criou-se um Servlet para processar pedidos HTTP. O Servlet é muito simples, bastou criar uma variavel e atribuir-lhe como valor a lista de publicações. Para ir buscarmos esta informação foi atraves da anotação EJB, que nos permite criar uma referencia do bean
+        Depois foi so chamar um ficheiro JSP.
+            JSP:
+                Neste ficheiro primeiro começou-se por definir os JSTL, ou seja, isto são packages que extendem o JSP e que nos permitem fazer loops, processar dados, aplicar condições, etc.
+                Para este trabalho utilizei 2 prefixos para fazer display dos dados. Um para percorrer a lista com os dados atraves da variavel que criamos no Servlet.
+                E o outro era para fazer slipt dos dados, isto foi mais algo para fazer uma pequena animação no Servlet, basicamente o que fiz com o slipt foi fazer uma especie de encriptação para cada publicação e assim cada um tinha um ID construido a partir de slipts.
+                Eu tentie usar o DOI mas não funcionou pq tem letras e numeros e a animação que implementei so compreende letras entao tive de obtar por esta abordagem.
+
+                Procurei um template CSS na internet e utilizei-o para fazer o display dos dados... Basicamente o que faço é fazer um Foreach da variavel, que tem os dados das publicações e depois retiro a informação que me interessa.
+                Perdi algum tempo a perceber como é que podia percorrer os researchers de uma dada publicação, não sabia como fazer mas depois lembrei-me do primeiro trabalho pratico em que utilizava XPath e tentei aplicar a mesma logica e funcionou...
+                Ou seja, tenho um ForEach dentro de ForEach que é para encontrar os researchers.. ao fazer pub.researchers ele consegue interpretar que isto é uma lista e consegue devovler-me o que ela contem.
+
+
+
+
+
+
+Session Bean: SessionBeanResearcher 
+
+De modo a efetuar pesquisas, relativas a investigadores, na base de dados foi criado um EJB remoto com três métodos. Estes estabelecem uma ligação à base de dados e devolvem uma lista de investigadores que lá estão guardados e 
+respetiva informação, com base na consulta realizada. Um dos métodos devolve uma lista com todos os investigadores, e respetiva informação, que se encontram guardados na base de dados, outro devolve uma lista de investigadores 
+com base numa pesquisa pelo primeiro e último nome e, por fim, um terceiro método devolve uma lista de investigadores com base numa pesquisa por uma competência. Na Figura 4 é possível ver a interface remota do EJB. Para efetuar 
+estas pesquisas foi usado JPQL.  
+
+
+Devido às relações entre classes/entidades serem todas de muitos para muitos, na hora de efetuar as pesquisas à base de dados com JPQL tornou-se complicado de conseguir extrair toda a informação associada aos investigadores. 
+Nomeadamente, quando eram acedidas as instituições, publicações e competências a que os investigadores estavam associados.  Após várias pesquisas, descobriu-se que uma possível solução passava por fazer várias pesquisas consecutivas,
+ adicionando um join fetch para cada relacionamento entre classes. Para além disso, utilizou-se a keyword: distinct para excluir resultados repetidos. Na Figura 5 é possível observar as três querys utilizadas na pesquisa de toda a 
+ informação relativa a todos os investigadores presentes na base de dados. 
+
+
+
+SOAP Web Service: ServiceResearchSoap 
+
+O SOAP web service relativo aos investigadores possuí três métodos, sendo que cada um deles é responsável por invocar um método do EJB e devolver esse resultado para o cliente que invoca o web service.  
+
+À semelhança do EJB descrito na secção 3.1, um dos métodos devolve uma lista com todos os investigadores, e respetiva informação, outro devolve uma lista de investigadores com base numa pesquisa pelo primeiro e último 
+nome e, por fim, um terceiro método devolve uma lista de investigadores com base numa pesquisa por uma competência. No entanto esta lista é enviada para o cliente não como um ArrayList, mas como um array de bytes. 
+Foi tomada esta decisão após vários problemas na criação do web service, visto que não era possível criar um web service com métodos que devolviam ArrayLists ou arrays de objetos (isto é, Objetct[]). Deste modo, 
+decidiu-se transforma o ArrayList de investigadores num array de bytes. É possível observar a implementação dessa transformação na Figura 6. 
+
+De maneira ao web service conseguir aceder aos métodos do EJB, foi feita uma chamada remota sobre EJB. Para isso, foram definidas as propriedades jndi em runtime – figura X – e foi feito o lookup da interface 
+remota do EJB. Posto isto, o web service conseguia invocar os métodos do EJB apresentado na secção 3.1. 
+
+
+Dificuldades sentidas durante a implementação 
+
+Numa fase inicial foi um pouco complicado configurar os projetos, devido a problemas de versões do JDK e de outras bibliotecas.  
+
+Durante a implementação do EJB foram surgindo alguns problemas, nomeadamente no resultado que era devolvido nas consultas à base de dados. A lista de investigadores devolvida tinha os investigadores corretos, no entanto quando 
+se acedia a outras entidades dentro dos objetos Researcher – as entidades Institution e Skill – era lançada uma exceção. Após muita pesquisa e muito tempo investido, descobriu-se que sito acontecia devido às relações de 
+muitos para muitos entre as entidades. Isso foi resolvido alterando um pouco as querys de pesquisa – como é explicado na secção 3.1. 
+
+Foram também sentidas dificuldades na criação do web service, nomeadamente na forma de devolver as listas de investigadores nos métodos do serviço. Para além disso, houve uma grande dificuldade em aceder aos EJB no web services.
+ Numa fase inicial, tentou-se injetar o EJB, no web service, através das anotações @EJB e @Inject, mas isto não era possível. Estes problemas foram ultrapassados, como foi explicado na secção 3.2. 

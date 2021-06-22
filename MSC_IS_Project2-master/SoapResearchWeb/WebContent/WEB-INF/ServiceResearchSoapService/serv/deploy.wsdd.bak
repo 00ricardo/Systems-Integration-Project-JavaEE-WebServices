@@ -1,0 +1,35 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServiceResearchSoapService WSDL service -->
+
+  <service name="ServiceResearchSoap" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://serv"/>
+      <parameter name="wsdlServiceElement" value="ServiceResearchSoapService"/>
+      <parameter name="schemaQualified" value="http://serv"/>
+      <parameter name="wsdlServicePort" value="ServiceResearchSoap"/>
+      <parameter name="className" value="serv.ServiceResearchSoapSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ServiceResearchSoap"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getResearchrsBySkill" qname="operNS:getResearchrsBySkill" xmlns:operNS="http://serv" returnQName="retNS:getResearchrsBySkillReturn" xmlns:retNS="http://serv" returnType="rtns:base64Binary" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:skill" xmlns:pns="http://serv" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getResearcherByName" qname="operNS:getResearcherByName" xmlns:operNS="http://serv" returnQName="retNS:getResearcherByNameReturn" xmlns:retNS="http://serv" returnType="rtns:base64Binary" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:firstName" xmlns:pns="http://serv" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lastName" xmlns:pns="http://serv" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAllResearchrsInformation" qname="operNS:getAllResearchrsInformation" xmlns:operNS="http://serv" returnQName="retNS:getAllResearchrsInformationReturn" xmlns:retNS="http://serv" returnType="rtns:base64Binary" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="getResearchrsBySkill getAllResearchrsInformation getResearcherByName"/>
+
+  </service>
+</deployment>

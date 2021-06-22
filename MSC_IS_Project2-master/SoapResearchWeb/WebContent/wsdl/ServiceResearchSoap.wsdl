@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://serv" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://serv" xmlns:intf="http://serv" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://serv" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="getResearchrsBySkill">
+    <complexType>
+     <sequence>
+      <element name="skill" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getResearchrsBySkillResponse">
+    <complexType>
+     <sequence>
+      <element name="getResearchrsBySkillReturn" type="xsd:base64Binary"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getResearcherByName">
+    <complexType>
+     <sequence>
+      <element name="firstName" type="xsd:string"/>
+      <element name="lastName" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getResearcherByNameResponse">
+    <complexType>
+     <sequence>
+      <element name="getResearcherByNameReturn" type="xsd:base64Binary"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getAllResearchrsInformation">
+    <complexType/>
+   </element>
+   <element name="getAllResearchrsInformationResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllResearchrsInformationReturn" type="xsd:base64Binary"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getResearcherByNameResponse">
+
+      <wsdl:part element="impl:getResearcherByNameResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getResearcherByNameRequest">
+
+      <wsdl:part element="impl:getResearcherByName" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllResearchrsInformationRequest">
+
+      <wsdl:part element="impl:getAllResearchrsInformation" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getResearchrsBySkillResponse">
+
+      <wsdl:part element="impl:getResearchrsBySkillResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getResearchrsBySkillRequest">
+
+      <wsdl:part element="impl:getResearchrsBySkill" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllResearchrsInformationResponse">
+
+      <wsdl:part element="impl:getAllResearchrsInformationResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ServiceResearchSoap">
+
+      <wsdl:operation name="getResearchrsBySkill">
+
+         <wsdl:input message="impl:getResearchrsBySkillRequest" name="getResearchrsBySkillRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getResearchrsBySkillResponse" name="getResearchrsBySkillResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getResearcherByName">
+
+         <wsdl:input message="impl:getResearcherByNameRequest" name="getResearcherByNameRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getResearcherByNameResponse" name="getResearcherByNameResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllResearchrsInformation">
+
+         <wsdl:input message="impl:getAllResearchrsInformationRequest" name="getAllResearchrsInformationRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllResearchrsInformationResponse" name="getAllResearchrsInformationResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServiceResearchSoapSoapBinding" type="impl:ServiceResearchSoap">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getResearchrsBySkill">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getResearchrsBySkillRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getResearchrsBySkillResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getResearcherByName">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getResearcherByNameRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getResearcherByNameResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllResearchrsInformation">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllResearchrsInformationRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllResearchrsInformationResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServiceResearchSoapService">
+
+      <wsdl:port binding="impl:ServiceResearchSoapSoapBinding" name="ServiceResearchSoap">
+
+         <wsdlsoap:address location="http://localhost:8080/SoapResearchWeb/services/ServiceResearchSoap"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
